@@ -19,26 +19,15 @@ import java.net.URL;
 
 public class Installer {
 
-    public static void main(String[] args) {
-
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
         if(!ConnectionUtil.isInternetConnected()){
-            JOptionPane.showMessageDialog(null, "Arsie requires an internet connection", Arsie.MODID + " " + Arsie.VERSION, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "The installer requires an internet connection", Arsie.MODID + " " + Arsie.VERSION, JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        JFrame window = new JFrame(String.format("arsie %s installer!", Arsie.VERSION));
+        JFrame window = new JFrame("arsie ${Arsie.VERSION} installer!");
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         ImageIcon logoImage = null;
         JButton installButton = new JButton("install");
@@ -49,6 +38,7 @@ public class Installer {
         try {
             logoImage = new ImageIcon(new URL("https://raw.githubusercontent.com/maywr/arsie-assets/main/arsiepng.png"));
         } catch (Exception ignored) {}
+        
         window.setIconImage(logoImage.getImage());
         JLabel logo = new JLabel(logoImage);
         JTextField gamePath = new JTextField();
