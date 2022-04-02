@@ -8,6 +8,8 @@ import xyz.maywr.arsie.Arsie;
 import java.util.Random;
 
 import static xyz.maywr.arsie.Arsie.mc;
+import static xyz.maywr.arsie.Arsie.NAME;
+import static xyz.maywr.arsie.Arsie.VERSION;
 
 public class RPCThread extends Thread {
 
@@ -29,7 +31,7 @@ public class RPCThread extends Thread {
             discordRPC.Discord_Initialize(discordID, eventHandlers, true, null);
             discordRichPresence.largeImageKey = "arsie";
             discordRichPresence.largeImageText = "arsie mod";
-            discordRichPresence.details = Arsie.NAME + " " + Arsie.VERSION + " | " + mc.player.getName();
+            discordRichPresence.details = "$NAME $VERSION | ${mc.player.getName()}";
             discordRichPresence.state = mc.isIntegratedServerRunning() ? "синглплеер" : (mc.getCurrentServerData() != null ? mc.getCurrentServerData().serverIP.toLowerCase() : "в меню");
 
             discordRPC.Discord_UpdatePresence(discordRichPresence);
