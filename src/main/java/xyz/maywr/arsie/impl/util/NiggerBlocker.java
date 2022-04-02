@@ -16,6 +16,7 @@ import static xyz.maywr.arsie.Arsie.mc;
 public class NiggerBlocker {
 
     public static boolean check() throws IOException {
+        /**
         BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("http://checkip.amazonaws.com/").openStream()));
         String ip = reader.readLine();
 
@@ -38,6 +39,8 @@ public class NiggerBlocker {
                 return true;
             }
         }
-        return false;
+        return false; **/
+        
+        return true;
     }
 }
