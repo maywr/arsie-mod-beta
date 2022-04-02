@@ -9,9 +9,9 @@ public enum Category {
     PLAYER("Player"),
     CLIENT("Client");
 
-    String name;
+    private final String name;
 
-    Category(String name){
+    private Category(String name){
         this.name = name;
     }
 
