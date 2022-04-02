@@ -13,47 +13,45 @@ import static xyz.maywr.arsie.Arsie.mc;
 
 public class Module {
 
-    private String name;
-    private String description;
-    private Category category;
+    private final String name, description;
+    private final Category category;
     private boolean enabled = false;
     private int keyBind;
     private ArrayList<Setting> settings = new ArrayList<>();
 
-    public Module(String name, String description, Category category){
-        super();
+    public Module(String name, String description, Category category) {
         this.name = name;
         this.description = description;
         this.category = category;
     }
 
     public void enable(){
-        enabled = true;
+        this.enabled = true;
         if(Arsie.moduleManager.getModule("ChatNotifies").isEnabled() && (!name.equalsIgnoreCase("ClickGUI"))) {
             mc.player.sendMessage(new TextComponentString(ChatFormatting.LIGHT_PURPLE + "[arsie] " + ChatFormatting.WHITE + this.getName() + ChatFormatting.GREEN + " enabled"));
         }
         MinecraftForge.EVENT_BUS.register(this);
-        onEnable();
+        this.onEnable();
     }
 
     public void disable(){
-        enabled = false;
+        this.enabled = false;
         if(Arsie.moduleManager.getModule("ChatNotifies").isEnabled() && (!name.equalsIgnoreCase("ClickGUI"))) {
             mc.player.sendMessage(new TextComponentString(ChatFormatting.LIGHT_PURPLE + "[arsie] " + ChatFormatting.WHITE + name + ChatFormatting.RED + " disabled"));
         }
         MinecraftForge.EVENT_BUS.unregister(this);
-        onDisable();
+        this.onDisable();
     }
 
     public boolean isEnabled(){
-        return enabled;
+        return this.enabled;
     }
 
     public void toggle(){
-        if(enabled){
-            disable();
-        } else if (!enabled) {
-            enable();
+        if(this.enabled){
+            this.disable();
+        } else if (!this.enabled) {
+            this.enable();
         }
     }
 
@@ -62,19 +60,19 @@ public class Module {
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public String getDescription(){
-        return description;
+        return this.description;
     }
 
     public Category getCategory(){
-        return category;
+        return this.category;
     }
 
     public int getKeyBind(){
-        return keyBind;
+        return this.keyBind;
     }
 
     public void onEnable(){}
@@ -86,7 +84,7 @@ public class Module {
     }
 
     public Setting getSetting(String name){
-        for(Setting setting : settings){
+        for(Setting setting : this.settings){
             if(setting.getName().equalsIgnoreCase(name)) return setting;
         }
         return null;
